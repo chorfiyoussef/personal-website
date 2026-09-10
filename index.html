@@ -86,28 +86,43 @@
   a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
   header { margin-bottom: 1.5rem; }
   h1 { font-size: 2.6rem; margin: 0; line-height: 1.1; }
-  .tabs { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem 1rem; margin-bottom: 1.25rem; }
-  .tabs a { font: .85em Menlo, Consolas, "Courier New", monospace; text-decoration: none; padding: .15rem .3rem; white-space: nowrap; }
+  .top { display: flex; align-items: flex-start; gap: .5rem; margin-bottom: 1.25rem; }
+  .tabs { flex: 1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem .5rem; }
+  .tabs a { font: .85em Menlo, Consolas, "Courier New", monospace; text-decoration: none; padding: .15rem .2rem; white-space: nowrap; }
   .tabs a::before { content: "[ "; }
   .tabs a::after { content: " ]"; }
   .tabs a:hover { background: var(--fg); color: var(--bg); }
+  .lang { flex: none; margin: .2rem 0 0; padding: 0; border: 0; background: none; color: inherit; cursor: pointer; line-height: 0; }
+  .lang svg { display: block; width: 24px; height: 16px; box-shadow: 0 0 0 1px var(--fg); }
+  .lang:hover svg, .lang:focus-visible svg { box-shadow: 0 0 0 2px var(--fg); }
+  html[lang="fr"] .flag-fr, html[lang="en"] .flag-en { display: none; }
   h2 { font-size: 1.3rem; font-weight: 700; margin: 3rem 0 .75rem; }
   p { margin: 1.25rem 0; }
   .art { float: right; margin: 0 0 1rem 2.5rem; color: var(--fg); font: 13px/15px Menlo, Consolas, "Courier New", monospace; }
   .art-left { float: left; margin: 0 2.5rem 1rem 0; }
-  @media (max-width: 700px) { .art { float: none; width: max-content; margin: 0 auto 1.5rem; } }
+  @media (max-width: 700px) {
+    .art { float: none; width: max-content; margin: 0 auto 1.5rem; }
+    .tabs { flex-direction: column; align-items: flex-start; gap: .25rem; min-width: 0; margin-left: -.2rem; }
+    .tabs a { white-space: normal; overflow-wrap: anywhere; }
+  }
 </style>
 </head>
 <body>
 <main>
 
 <header>
-  <nav class="tabs">
-    <a href="https://github.com/chorfiyoussef" target="_blank" rel="me noopener">GitHub</a>
-    <a href="Chorfi_Youssef_CV.pdf" download="Chorfi_Youssef_CV.pdf">CV</a>
-    <a href="mailto:ychorfi@ethz.ch">Academic: ychorfi@ethz.ch</a>
-    <a href="mailto:chorfiyouss@gmail.com">Everything else: chorfiyouss@gmail.com</a>
-  </nav>
+  <div class="top">
+    <nav class="tabs">
+      <a href="https://github.com/chorfiyoussef" target="_blank" rel="me noopener">GitHub</a>
+      <a href="Chorfi_Youssef_CV.pdf" download="Chorfi_Youssef_CV.pdf">CV</a>
+      <a href="mailto:ychorfi@ethz.ch" data-i18n="mail-academic">Academic: ychorfi@ethz.ch</a>
+      <a href="mailto:chorfiyouss@gmail.com" data-i18n="mail-other">Everything else: chorfiyouss@gmail.com</a>
+    </nav>
+    <button class="lang" id="lang" type="button" aria-label="Passer en français" title="Passer en français">
+      <svg class="flag-fr" viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#0055a4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ef4135"/></svg>
+      <svg class="flag-en" viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><clipPath id="uk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><path d="M0,0v30h60v-30z" fill="#00247d"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#uk)" stroke="#cf142b" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#cf142b" stroke-width="6"/></svg>
+    </button>
+  </div>
   <h1>Youssef Chorfi</h1>
 </header>
 
@@ -132,31 +147,31 @@
            |  (      \
             \  \     |</pre>
 
-<p><span id="hello">Hello, internet stranger!</span></p>
+<p><span id="hello" data-i18n="hello">Hello, internet stranger!</span></p>
 
-<p>I am Youssef, a Master’s student in Data Science at <a href="https://ethz.ch" target="_blank" rel="noopener">ETH Zürich</a>.</p>
+<p data-i18n="intro">I am Youssef, a Master’s student in Data Science at <a href="https://ethz.ch" target="_blank" rel="noopener">ETH Zürich</a>.</p>
 
-<p>On the side, I’m building <a href="https://agaria.ai" target="_blank" rel="noopener">agaria.ai</a>, a tool that automates sales prospecting on LinkedIn (email outreach is coming soon!)</p>
+<p data-i18n="agaria">On the side, I’m building <a href="https://agaria.ai" target="_blank" rel="noopener">agaria.ai</a>, a tool that automates sales prospecting on LinkedIn (email outreach is coming soon!)</p>
 
-<p>I like working on systems that sit at the intersection of software, machine learning, and real-world products. I’m particularly interested in <strong>cloud and network systems, agentic AI, and foundation models for robotics.</strong></p>
+<p data-i18n="systems">I like working on systems that sit at the intersection of software, machine learning, and real-world products. I’m particularly interested in <strong>cloud and network systems, agentic AI, and foundation models for robotics.</strong></p>
 
-<p>I did my Bachelor’s in Computer Science at <a href="https://www.epfl.ch" target="_blank" rel="noopener">EPFL</a>.</p>
+<p data-i18n="bachelor">I did my Bachelor’s in Computer Science at <a href="https://www.epfl.ch" target="_blank" rel="noopener">EPFL</a>.</p>
 
-<h2>Interests</h2>
+<h2 data-i18n="h-interests">Interests</h2>
 
-<p>Most of my work so far has been about applying things I already know to build useful systems. I’m now looking to get deeper into research, especially around cloud and network systems, or foundation models for robotics.</p>
+<p data-i18n="interests-1">Most of my work so far has been about applying things I already know to build useful systems. I’m now looking to get deeper into research, especially around cloud and network systems, or foundation models for robotics.</p>
 
-<p>I strongly believe that the recent advances in language and visual intelligence are only the beginning of a much bigger shift: bringing this kind of intelligence into the physical world.</p>
+<p data-i18n="interests-2">I strongly believe that the recent advances in language and visual intelligence are only the beginning of a much bigger shift: bringing this kind of intelligence into the physical world.</p>
 
-<h2>Work</h2>
+<h2 data-i18n="h-work">Work</h2>
 
-<p>In 2025, I interned as an <strong>ML Engineer at <a href="https://www.nutrai.ch" target="_blank" rel="noopener">NutrAI</a></strong>, where I estimated how much of a meal someone actually ate by matching photos taken before and after eating. I also built two internal tools for browsing, filtering, and analysing the image dataset and running experiments.</p>
+<p data-i18n="work-nutrai">In 2025, I interned as an <strong>ML Engineer at <a href="https://www.nutrai.ch" target="_blank" rel="noopener">NutrAI</a></strong>, where I estimated how much of a meal someone actually ate by matching photos taken before and after eating. I also built two internal tools for browsing, filtering, and analysing the image dataset and running experiments.</p>
 
-<p>From 2025 to 2026, I was an <strong>Event Lead at the <a href="https://www.entrepreneur-club.org" target="_blank" rel="noopener">ETH Entrepreneur Club</a></strong>, where I organized two student events end to end with a small team, covering sponsors, logistics, and operations. These included BOOST, a pitching competition for early-stage startups with a CHF 40,000 prize pool, and Startup Simulator, a one-day event where teams go through the process of building a company.</p>
+<p data-i18n="work-eec">From 2025 to 2026, I was an <strong>Event Lead at the <a href="https://www.entrepreneur-club.org" target="_blank" rel="noopener">ETH Entrepreneur Club</a></strong>, where I organized two student events end to end with a small team, covering sponsors, logistics, and operations. These included BOOST, a pitching competition for early-stage startups with a CHF 40,000 prize pool, and Startup Simulator, a one-day event where teams go through the process of building a company.</p>
 
-<p>From 2023 to 2024, I was a <strong>Teaching Assistant at <a href="https://www.epfl.ch" target="_blank" rel="noopener">EPFL</a></strong>, where I ran exercise sessions, helped students with assignments, and graded for five courses in computer science and mathematics, including Software Construction, Linear Algebra, and Calculus.</p>
+<p data-i18n="work-ta">From 2023 to 2024, I was a <strong>Teaching Assistant at <a href="https://www.epfl.ch" target="_blank" rel="noopener">EPFL</a></strong>, where I ran exercise sessions, helped students with assignments, and graded for five courses in computer science and mathematics, including Software Construction, Linear Algebra, and Calculus.</p>
 
-<h2>What I like</h2>
+<h2 data-i18n="h-like">What I like</h2>
 
 <pre class="art art-left" aria-hidden="true">
         ,....,
@@ -177,17 +192,72 @@
     /'--......--'\
     `"--......--"`</pre>
 
-<p>All form of art, mostly Cinema and paintings. There Will Be Blood by Paul Thomas Anderson is probably my favorite movie. The painting I like most that I’ve seen in real life is Inferno by Herri met de Bles.</p>
+<p data-i18n="like-art">All form of art, mostly Cinema and paintings. There Will Be Blood by Paul Thomas Anderson is probably my favorite movie. The painting I like most that I’ve seen in real life is Inferno by Herri met de Bles.</p>
 
-<p>Web design. I like to think about designs that reduce cognitive effort as much as possible. Aesthetic, but very easy to use.</p>
+<p data-i18n="like-web">Web design. I like to think about designs that reduce cognitive effort as much as possible. Aesthetic, but very easy to use.</p>
 
-<p>Games (counts as art imo). I like games that let you explore and figure things out for yourself. My favorites: Elden Ring, Undertale, Zelda Breath of the Wild.</p>
+<p data-i18n="like-games">Games (counts as art imo). I like games that let you explore and figure things out for yourself. My favorites: Elden Ring, Undertale, Zelda Breath of the Wild.</p>
 
-<p>Chess. I play occasionally, mostly online. Find me on <a href="https://www.chess.com/member/chorfiyoussef" target="_blank" rel="noopener">Chess.com</a>.</p>
+<p data-i18n="like-chess">Chess. I play occasionally, mostly online. Find me on <a href="https://www.chess.com/member/chorfiyoussef" target="_blank" rel="noopener">Chess.com</a>.</p>
 
 </main>
 <script>
   (function () {
+    var FR = {
+      'mail-academic': 'Études : ychorfi@ethz.ch',
+      'mail-other': 'Le reste : chorfiyouss@gmail.com',
+      'hello': 'Bonjour, inconnu d’internet !',
+      'intro': 'Je suis Youssef, étudiant en Master de Data Science à l’<a href="https://ethz.ch" target="_blank" rel="noopener">ETH Zürich</a>.',
+      'agaria': 'À côté, je développe <a href="https://agaria.ai" target="_blank" rel="noopener">agaria.ai</a>, un outil qui automatise la prospection commerciale sur LinkedIn (la prospection par e-mail arrive bientôt !)',
+      'systems': 'J’aime travailler sur des systèmes à l’intersection du logiciel, du machine learning et des produits concrets. Je m’intéresse particulièrement aux <strong>systèmes cloud et réseau, à l’IA agentique et aux modèles de fondation pour la robotique.</strong>',
+      'bachelor': 'J’ai fait mon Bachelor en Informatique à l’<a href="https://www.epfl.ch" target="_blank" rel="noopener">EPFL</a>.',
+      'h-interests': 'Centres d’intérêt',
+      'interests-1': 'Jusqu’ici, mon travail a surtout consisté à appliquer ce que je savais déjà pour construire des systèmes utiles. Je cherche maintenant à m’impliquer davantage dans la recherche, en particulier autour des systèmes cloud et réseau, ou des modèles de fondation pour la robotique.',
+      'interests-2': 'Je suis convaincu que les avancées récentes en intelligence langagière et visuelle ne sont que le début d’un changement bien plus profond : amener ce type d’intelligence dans le monde physique.',
+      'h-work': 'Expérience',
+      'work-nutrai': 'En 2025, j’ai fait un stage comme <strong>ML Engineer chez <a href="https://www.nutrai.ch" target="_blank" rel="noopener">NutrAI</a></strong>, où j’ai estimé la part d’un repas réellement consommée en appariant des photos prises avant et après le repas. J’ai aussi développé deux outils internes pour parcourir, filtrer et analyser le jeu de données d’images et lancer des expériences.',
+      'work-eec': 'De 2025 à 2026, j’ai été <strong>Event Lead à l’<a href="https://www.entrepreneur-club.org" target="_blank" rel="noopener">ETH Entrepreneur Club</a></strong>, où j’ai organisé deux événements étudiants de A à Z avec une petite équipe : sponsors, logistique et opérations. Parmi eux, BOOST, une compétition de pitch pour startups early-stage dotée de 40 000 CHF de prix, et Startup Simulator, un événement d’une journée où des équipes traversent les étapes de la création d’une entreprise.',
+      'work-ta': 'De 2023 à 2024, j’ai été <strong>assistant d’enseignement à l’<a href="https://www.epfl.ch" target="_blank" rel="noopener">EPFL</a></strong>, où j’ai animé des séances d’exercices, aidé les étudiants sur leurs devoirs et corrigé des copies pour cinq cours d’informatique et de mathématiques, dont Software Construction, Algèbre linéaire et Analyse.',
+      'h-like': 'Ce que j’aime',
+      'like-art': 'Toutes les formes d’art, surtout le cinéma et la peinture. There Will Be Blood de Paul Thomas Anderson est probablement mon film préféré. Le tableau que j’ai le plus aimé voir en vrai est L’Enfer de Herri met de Bles.',
+      'like-web': 'Le web design. J’aime réfléchir à des designs qui réduisent l’effort cognitif autant que possible. Esthétiques, mais très simples à utiliser.',
+      'like-games': 'Les jeux vidéo (ça compte comme de l’art, à mon avis). J’aime les jeux qui laissent explorer et comprendre les choses par soi-même. Mes préférés : Elden Ring, Undertale, Zelda Breath of the Wild.',
+      'like-chess': 'Les échecs. Je joue de temps en temps, surtout en ligne. Retrouvez-moi sur <a href="https://www.chess.com/member/chorfiyoussef" target="_blank" rel="noopener">Chess.com</a>.'
+    };
+    var TITLE = { en: document.title, fr: 'Youssef Chorfi — Master en Data Science à l’ETH Zürich' };
+    var LABEL = { en: 'Passer en français', fr: 'Switch to English' };
+    var EN = {}, els = document.querySelectorAll('[data-i18n]'), btn = document.getElementById('lang');
+    for (var i = 0; i < els.length; i++) EN[els[i].getAttribute('data-i18n')] = els[i].innerHTML;
+
+    function apply(lang) {
+      var dict = lang === 'fr' ? FR : EN;
+      document.documentElement.lang = lang;
+      for (var i = 0; i < els.length; i++) {
+        var key = els[i].getAttribute('data-i18n');
+        if (dict[key] != null) els[i].innerHTML = dict[key];
+      }
+      document.title = TITLE[lang];
+      btn.setAttribute('aria-label', LABEL[lang]);
+      btn.title = LABEL[lang];
+    }
+
+    var lang = null;
+    try { lang = localStorage.getItem('lang'); } catch (e) {}
+    var m = /[?&]lang=(fr|en)\b/.exec(location.search);
+    if (m) lang = m[1];
+    if (lang !== 'fr' && lang !== 'en') lang = /^fr\b/i.test(navigator.language || '') ? 'fr' : 'en';
+    if (lang !== 'en') apply(lang);
+
+    btn.addEventListener('click', function () {
+      var next = document.documentElement.lang === 'fr' ? 'en' : 'fr';
+      apply(next);
+      try { localStorage.setItem('lang', next); } catch (e) {}
+      if (window.scrambleHello) window.scrambleHello();
+    });
+  })();
+</script>
+<script>
+  window.scrambleHello = function () {
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var CH = '_!X$0-+*#';
     function rnd() { return CH[Math.floor(Math.random() * CH.length)]; }
@@ -228,7 +298,8 @@
     }
     nodes.forEach(function (it) { render(it, 0); });
     frame();
-  })();
+  };
+  scrambleHello();
 </script>
 </body>
 </html>

@@ -246,7 +246,7 @@
     try { lang = localStorage.getItem('lang'); } catch (e) {}
     var m = /[?&]lang=(fr|en)\b/.exec(location.search);
     if (m) lang = m[1];
-    if (lang !== 'fr' && lang !== 'en') lang = /^fr\b/i.test(navigator.language || '') ? 'fr' : 'en';
+    if (lang !== 'fr' && lang !== 'en') lang = 'en';
     if (lang !== 'en') apply(lang);
 
     btn.addEventListener('click', function () {

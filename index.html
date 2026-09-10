@@ -86,15 +86,15 @@
   a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
   header { margin-bottom: 1.5rem; }
   h1 { font-size: 2.6rem; margin: 0; line-height: 1.1; }
-  .top { display: flex; align-items: flex-start; gap: .5rem; margin-bottom: 1.25rem; }
-  .tabs { flex: 1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem .5rem; }
+  .tabs { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem .5rem; margin-bottom: 1.25rem; padding-right: 2rem; }
   .tabs a { font: .85em Menlo, Consolas, "Courier New", monospace; text-decoration: none; padding: .15rem .2rem; white-space: nowrap; }
   .tabs a::before { content: "[ "; }
   .tabs a::after { content: " ]"; }
   .tabs a:hover { background: var(--fg); color: var(--bg); }
-  .lang { flex: none; margin: .2rem 0 0; padding: 0; border: 0; background: none; color: inherit; cursor: pointer; line-height: 0; }
-  .lang svg { display: block; width: 24px; height: 16px; box-shadow: 0 0 0 1px var(--fg); }
-  .lang:hover svg, .lang:focus-visible svg { box-shadow: 0 0 0 2px var(--fg); }
+  .lang-wrap { position: sticky; top: 1rem; z-index: 1; height: 0; display: flex; justify-content: flex-end; align-items: flex-start; }
+  .lang { margin: .2rem 0 0; padding: 0; border: 0; background: none; color: inherit; cursor: pointer; line-height: 0; }
+  .lang svg { display: block; width: 24px; height: 16px; box-shadow: 0 0 0 1px var(--fg), 0 0 0 4px var(--bg); }
+  .lang:hover svg, .lang:focus-visible svg { box-shadow: 0 0 0 2px var(--fg), 0 0 0 5px var(--bg); }
   html[lang="fr"] .flag-fr, html[lang="en"] .flag-en { display: none; }
   h2 { font-size: 1.3rem; font-weight: 700; margin: 3rem 0 .75rem; }
   p { margin: 1.25rem 0; }
@@ -110,19 +110,20 @@
 <body>
 <main>
 
+<div class="lang-wrap">
+  <button class="lang" id="lang" type="button" aria-label="Passer en français" title="Passer en français">
+    <svg class="flag-fr" viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#0055a4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ef4135"/></svg>
+    <svg class="flag-en" viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><clipPath id="uk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><path d="M0,0v30h60v-30z" fill="#00247d"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#uk)" stroke="#cf142b" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#cf142b" stroke-width="6"/></svg>
+  </button>
+</div>
+
 <header>
-  <div class="top">
-    <nav class="tabs">
-      <a href="https://github.com/chorfiyoussef" target="_blank" rel="me noopener">GitHub</a>
-      <a href="Chorfi_Youssef_CV.pdf" download="Chorfi_Youssef_CV.pdf">CV</a>
-      <a href="mailto:ychorfi@ethz.ch" data-i18n="mail-academic">Academic: ychorfi@ethz.ch</a>
-      <a href="mailto:chorfiyouss@gmail.com" data-i18n="mail-other">Everything else: chorfiyouss@gmail.com</a>
-    </nav>
-    <button class="lang" id="lang" type="button" aria-label="Passer en français" title="Passer en français">
-      <svg class="flag-fr" viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#0055a4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ef4135"/></svg>
-      <svg class="flag-en" viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><clipPath id="uk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><path d="M0,0v30h60v-30z" fill="#00247d"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#uk)" stroke="#cf142b" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#cf142b" stroke-width="6"/></svg>
-    </button>
-  </div>
+  <nav class="tabs">
+    <a href="https://github.com/chorfiyoussef" target="_blank" rel="me noopener">GitHub</a>
+    <a href="Chorfi_Youssef_CV.pdf" download="Chorfi_Youssef_CV.pdf">CV</a>
+    <a href="mailto:ychorfi@ethz.ch" data-i18n="mail-academic">Academic: ychorfi@ethz.ch</a>
+    <a href="mailto:chorfiyouss@gmail.com" data-i18n="mail-other">Everything else: chorfiyouss@gmail.com</a>
+  </nav>
   <h1>Youssef Chorfi</h1>
 </header>
 
@@ -165,7 +166,7 @@
 
 <h2 data-i18n="h-work">Work</h2>
 
-<p data-i18n="work-nutrai">In 2025, I interned as an <strong>ML Engineer at <a href="https://www.nutrai.ch" target="_blank" rel="noopener">NutrAI</a></strong>, where I estimated how much of a meal someone actually ate by matching photos taken before and after eating. I also built two internal tools for browsing, filtering, and analysing the image dataset and running experiments.</p>
+<p data-i18n="work-nutrai">In 2025, I interned as an <strong>ML Engineer at <a href="https://www.nutrai.ch" target="_blank" rel="noopener">NutrAI</a></strong>, where I estimated how much of a meal someone actually ate by matching photos taken before and after eating. I also built two internal tools for browsing, filtering and analysing the image dataset, and running experiments.</p>
 
 <p data-i18n="work-eec">From 2025 to 2026, I was an <strong>Event Lead at the <a href="https://www.entrepreneur-club.org" target="_blank" rel="noopener">ETH Entrepreneur Club</a></strong>, where I organized two student events end to end with a small team, covering sponsors, logistics, and operations. These included BOOST, a pitching competition for early-stage startups with a CHF 40,000 prize pool, and Startup Simulator, a one-day event where teams go through the process of building a company.</p>
 
@@ -215,7 +216,7 @@
       'interests-1': 'Jusqu’ici, mon travail a surtout consisté à appliquer ce que je savais déjà pour construire des systèmes utiles. Je cherche maintenant à m’impliquer davantage dans la recherche, en particulier autour des systèmes cloud et réseau, ou des modèles de fondation pour la robotique.',
       'interests-2': 'Je suis convaincu que les avancées récentes en intelligence langagière et visuelle ne sont que le début d’un changement bien plus profond : amener ce type d’intelligence dans le monde physique.',
       'h-work': 'Expérience',
-      'work-nutrai': 'En 2025, j’ai fait un stage comme <strong>ML Engineer chez <a href="https://www.nutrai.ch" target="_blank" rel="noopener">NutrAI</a></strong>, où j’ai estimé la part d’un repas réellement consommée en appariant des photos prises avant et après le repas. J’ai aussi développé deux outils internes pour parcourir, filtrer et analyser le jeu de données d’images et lancer des expériences.',
+      'work-nutrai': 'En 2025, j’ai fait un stage comme <strong>ML Engineer chez <a href="https://www.nutrai.ch" target="_blank" rel="noopener">NutrAI</a></strong>, où j’ai estimé la part d’un repas réellement consommée en appariant des photos prises avant et après le repas. J’ai aussi développé deux outils internes pour parcourir, filtrer et analyser le jeu de données d’images, et lancer des expériences.',
       'work-eec': 'De 2025 à 2026, j’ai été <strong>Event Lead à l’<a href="https://www.entrepreneur-club.org" target="_blank" rel="noopener">ETH Entrepreneur Club</a></strong>, où j’ai organisé deux événements étudiants de A à Z avec une petite équipe : sponsors, logistique et opérations. Parmi eux, BOOST, une compétition de pitch pour startups early-stage dotée de 40 000 CHF de prix, et Startup Simulator, un événement d’une journée où des équipes traversent les étapes de la création d’une entreprise.',
       'work-ta': 'De 2023 à 2024, j’ai été <strong>assistant d’enseignement à l’<a href="https://www.epfl.ch" target="_blank" rel="noopener">EPFL</a></strong>, où j’ai animé des séances d’exercices, aidé les étudiants sur leurs devoirs et corrigé des copies pour cinq cours d’informatique et de mathématiques, dont Software Construction, Algèbre linéaire et Analyse.',
       'h-like': 'Ce que j’aime',

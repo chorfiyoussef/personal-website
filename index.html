@@ -92,8 +92,8 @@
   .tabs a::before { content: "[ "; }
   .tabs a::after { content: " ]"; }
   .tabs a:hover { background: var(--fg); color: var(--bg); }
-  .lang { display: inline-flex; align-items: center; gap: .6rem; margin: 0 0 1.25rem; padding: 0; border: 0; background: none; color: var(--link); cursor: pointer; font: .85em Menlo, Consolas, "Courier New", monospace; line-height: 1.4; }
-  .lang svg { display: block; width: 24px; height: 16px; box-shadow: 0 0 0 1px var(--fg); }
+  .lang { display: inline-flex; align-items: center; gap: .45rem; margin: 0 0 1rem; padding: 0; border: 0; background: none; color: var(--link); cursor: pointer; font: .7em Menlo, Consolas, "Courier New", monospace; line-height: 1.4; }
+  .lang svg { display: block; width: 18px; height: 12px; box-shadow: 0 0 0 1px var(--fg); }
   .lang:hover span, .lang:focus-visible span { text-decoration: underline; text-underline-offset: 3px; }
   html[lang="fr"] .to-fr, html[lang="en"] .to-en { display: none; }
   h2 { font-size: 1.3rem; font-weight: 700; margin: 3rem 0 .75rem; }
@@ -102,8 +102,7 @@
   .art-left { float: left; margin: 0 2.5rem 1rem 0; }
   @media (min-width: 701px) {
     header { display: flex; flex-direction: column; }
-    .lang { align-self: flex-end; font-size: .7em; gap: .45rem; margin-bottom: .75rem; }
-    .lang svg { width: 18px; height: 12px; }
+    .lang { align-self: flex-end; margin-bottom: .75rem; }
   }
   @media (max-width: 700px) {
     .art { float: none; width: max-content; margin: 0 auto 1.5rem; }

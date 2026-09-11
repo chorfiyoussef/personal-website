@@ -87,16 +87,15 @@
   a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
   header { margin-bottom: 1.5rem; }
   h1 { font-size: 2.6rem; margin: 0; line-height: 1.1; }
-  .tabs { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem .5rem; margin-bottom: 1.25rem; padding-right: 2rem; }
+  .tabs { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem .5rem; margin-bottom: 1.25rem; }
   .tabs a { font: .85em Menlo, Consolas, "Courier New", monospace; text-decoration: none; padding: .15rem .2rem; white-space: nowrap; }
   .tabs a::before { content: "[ "; }
   .tabs a::after { content: " ]"; }
   .tabs a:hover { background: var(--fg); color: var(--bg); }
-  .lang-wrap { position: sticky; top: 1rem; z-index: 1; height: 0; display: flex; justify-content: flex-end; align-items: flex-start; }
-  .lang { margin: .2rem 0 0; padding: 0; border: 0; background: none; color: inherit; cursor: pointer; line-height: 0; }
-  .lang svg { display: block; width: 24px; height: 16px; box-shadow: 0 0 0 1px var(--fg), 0 0 0 4px var(--bg); }
-  .lang:hover svg, .lang:focus-visible svg { box-shadow: 0 0 0 2px var(--fg), 0 0 0 5px var(--bg); }
-  html[lang="fr"] .flag-fr, html[lang="en"] .flag-en { display: none; }
+  .lang { display: inline-flex; align-items: center; gap: .6rem; margin: 0 0 1.25rem; padding: 0; border: 0; background: none; color: var(--link); cursor: pointer; font: .85em Menlo, Consolas, "Courier New", monospace; line-height: 1.4; }
+  .lang svg { display: block; width: 24px; height: 16px; box-shadow: 0 0 0 1px var(--fg); }
+  .lang:hover span, .lang:focus-visible span { text-decoration: underline; text-underline-offset: 3px; }
+  html[lang="fr"] .to-fr, html[lang="en"] .to-en { display: none; }
   h2 { font-size: 1.3rem; font-weight: 700; margin: 3rem 0 .75rem; }
   p { margin: 1.25rem 0; }
   .art { float: right; margin: 0 0 1rem 2.5rem; color: var(--fg); font: 13px/15px Menlo, Consolas, "Courier New", monospace; }
@@ -104,6 +103,7 @@
   @media (max-width: 700px) {
     .art { float: none; width: max-content; margin: 0 auto 1.5rem; }
     .tabs { flex-direction: column; align-items: flex-start; gap: .25rem; min-width: 0; margin-left: -.2rem; }
+    .lang { flex-direction: column; align-items: flex-start; gap: .35rem; }
     .tabs a { white-space: normal; overflow-wrap: anywhere; }
   }
 </style>
@@ -111,14 +111,13 @@
 <body>
 <main>
 
-<div class="lang-wrap">
-  <button class="lang" id="lang" type="button" aria-label="Passer en français" title="Passer en français">
-    <svg class="flag-fr" viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#0055a4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ef4135"/></svg>
-    <svg class="flag-en" viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><clipPath id="uk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><path d="M0,0v30h60v-30z" fill="#00247d"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#uk)" stroke="#cf142b" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#cf142b" stroke-width="6"/></svg>
-  </button>
-</div>
-
 <header>
+  <button class="lang" id="lang" type="button">
+    <svg class="to-fr" viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#0055a4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ef4135"/></svg>
+    <svg class="to-en" viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><clipPath id="uk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><path d="M0,0v30h60v-30z" fill="#00247d"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#uk)" stroke="#cf142b" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#cf142b" stroke-width="6"/></svg>
+    <span class="to-fr">Passer en français</span>
+    <span class="to-en">Switch to English</span>
+  </button>
   <nav class="tabs">
     <a href="https://github.com/chorfiyoussef" target="_blank" rel="me noopener">GitHub</a>
     <a href="Chorfi_Youssef_CV.pdf" download="Chorfi_Youssef_CV.pdf">CV</a>
@@ -227,7 +226,6 @@
       'like-chess': 'Les <strong>échecs</strong>. Je joue de temps en temps, surtout en ligne. Retrouvez-moi sur <a href="https://www.chess.com/member/chorfiyoussef" target="_blank" rel="noopener">Chess.com</a>.'
     };
     var TITLE = { en: document.title, fr: 'Youssef Chorfi — Master en Data Science à l’ETH Zürich' };
-    var LABEL = { en: 'Passer en français', fr: 'Switch to English' };
     var EN = {}, els = document.querySelectorAll('[data-i18n]'), btn = document.getElementById('lang');
     for (var i = 0; i < els.length; i++) EN[els[i].getAttribute('data-i18n')] = els[i].innerHTML;
 
@@ -239,8 +237,6 @@
         if (dict[key] != null) els[i].innerHTML = dict[key];
       }
       document.title = TITLE[lang];
-      btn.setAttribute('aria-label', LABEL[lang]);
-      btn.title = LABEL[lang];
     }
 
     var m = /[?&]lang=(fr|en)\b/.exec(location.search);

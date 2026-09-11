@@ -94,7 +94,10 @@
   .tabs a:hover { background: var(--fg); color: var(--bg); }
   .lang { display: inline-flex; align-items: center; gap: .45rem; margin: 0 0 1rem; padding: 0; border: 0; background: none; color: var(--link); cursor: pointer; font: .7em Menlo, Consolas, "Courier New", monospace; line-height: 1.4; }
   .lang svg { display: block; width: 18px; height: 12px; box-shadow: 0 0 0 1px var(--fg); }
-  .lang:hover span, .lang:focus-visible span { text-decoration: underline; text-underline-offset: 3px; }
+  .lang span { padding: .15rem .2rem; }
+  .lang span::before { content: "[ "; }
+  .lang span::after { content: " ]"; }
+  .lang:hover span, .lang:focus-visible span { background: var(--fg); color: var(--bg); }
   html[lang="fr"] .to-fr, html[lang="en"] .to-en { display: none; }
   h2 { font-size: 1.3rem; font-weight: 700; margin: 3rem 0 .75rem; }
   p { margin: 1.25rem 0; }

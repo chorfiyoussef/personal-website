@@ -92,25 +92,25 @@
   .tabs a::before { content: "[ "; }
   .tabs a::after { content: " ]"; }
   .tabs a:hover { background: var(--fg); color: var(--bg); }
-  .langs { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .1rem; margin: 0 0 1rem -.2rem; font: .7em Menlo, Consolas, "Courier New", monospace; line-height: 1.4; }
-  .langs::before { content: "["; margin-right: .25rem; }
-  .langs::after { content: "]"; margin-left: .25rem; }
+  .langs { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .1rem; margin: 0 0 1rem; margin-inline-start: -.2rem; font: .7em Menlo, Consolas, "Courier New", monospace; line-height: 1.4; }
+  .langs::before { content: "["; margin-inline-end: .25rem; }
+  .langs::after { content: "]"; margin-inline-start: .25rem; }
   .langs button { padding: .25rem; border: 0; background: none; cursor: pointer; opacity: .45; }
   .langs button:hover, .langs button:focus-visible, .langs button[aria-pressed="true"] { opacity: 1; }
   .langs button[aria-pressed="true"] { background: var(--fg); cursor: default; }
   .langs svg { display: block; width: 18px; height: 12px; box-shadow: 0 0 0 1px var(--fg); }
-  html[dir="rtl"] header, html[dir="rtl"] .art { direction: ltr; }
   html[dir="rtl"] .tabs a { unicode-bidi: plaintext; }
   h2 { font-size: 1.3rem; font-weight: 700; margin: 3rem 0 .75rem; }
   p { margin: 1.25rem 0; }
-  .art { float: right; margin: 0 0 1rem 2.5rem; color: var(--fg); font: 13px/15px Menlo, Consolas, "Courier New", monospace; }
+  .art { direction: ltr; float: right; margin: 0 0 1rem 2.5rem; color: var(--fg); font: 13px/15px Menlo, Consolas, "Courier New", monospace; }
   @media (min-width: 701px) {
     header { display: flex; flex-direction: column; }
     .langs { align-self: flex-start; margin-bottom: .75rem; }
+    html[dir="rtl"] .art { float: left; margin: 0 2.5rem 1rem 0; }
   }
   @media (max-width: 700px) {
     .art { float: none; width: max-content; margin: 0 auto 1.5rem; }
-    .tabs { flex-direction: column; align-items: flex-start; gap: .25rem; min-width: 0; margin-left: -.2rem; }
+    .tabs { flex-direction: column; align-items: flex-start; gap: .25rem; min-width: 0; margin-inline-start: -.2rem; }
     .tabs a { white-space: normal; overflow-wrap: anywhere; }
   }
 </style>
@@ -120,8 +120,9 @@
 
 <header>
   <div class="langs" id="langs" role="group" aria-label="Language">
-    <button type="button" data-lang="en" lang="en" title="English" aria-label="English" aria-pressed="true"><svg viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><clipPath id="uk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><path d="M0,0v30h60v-30z" fill="#00247d"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#uk)" stroke="#cf142b" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#cf142b" stroke-width="6"/></svg></button>
+    <button type="button" data-lang="en" lang="en" title="English" aria-label="English" aria-pressed="true"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#b22234"/><path d="M0,2.308h30M0,5.385h30M0,8.462h30M0,11.538h30M0,14.615h30M0,17.692h30" stroke="#fff" stroke-width="1.539"/><rect width="12" height="10.77" fill="#3c3b6e"/><g fill="#fff"><circle cx="1.2" cy="1.35" r=".45"/><circle cx="3.6" cy="1.35" r=".45"/><circle cx="6.0" cy="1.35" r=".45"/><circle cx="8.4" cy="1.35" r=".45"/><circle cx="10.8" cy="1.35" r=".45"/><circle cx="1.2" cy="4.05" r=".45"/><circle cx="3.6" cy="4.05" r=".45"/><circle cx="6.0" cy="4.05" r=".45"/><circle cx="8.4" cy="4.05" r=".45"/><circle cx="10.8" cy="4.05" r=".45"/><circle cx="1.2" cy="6.75" r=".45"/><circle cx="3.6" cy="6.75" r=".45"/><circle cx="6.0" cy="6.75" r=".45"/><circle cx="8.4" cy="6.75" r=".45"/><circle cx="10.8" cy="6.75" r=".45"/><circle cx="1.2" cy="9.45" r=".45"/><circle cx="3.6" cy="9.45" r=".45"/><circle cx="6.0" cy="9.45" r=".45"/><circle cx="8.4" cy="9.45" r=".45"/><circle cx="10.8" cy="9.45" r=".45"/></g></svg></button>
     <button type="button" data-lang="fr" lang="fr" title="Français" aria-label="Français" aria-pressed="false"><svg viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#0055a4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ef4135"/></svg></button>
+    <button type="button" data-lang="ar" lang="ar" title="العربية" aria-label="العربية" aria-pressed="false"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#c1272d"/><path d="M15.00,5.70 L17.70,14.02 L10.63,8.88 L19.37,8.88 L12.30,14.02Z" fill="none" stroke="#006233" stroke-width="1.4" stroke-linejoin="miter"/></svg></button>
     <button type="button" data-lang="de" lang="de" title="Deutsch" aria-label="Deutsch" aria-pressed="false"><svg viewBox="0 0 1 3" preserveAspectRatio="none" aria-hidden="true"><rect width="1" height="1" fill="#000"/><rect y="1" width="1" height="1" fill="#dd0000"/><rect y="2" width="1" height="1" fill="#ffce00"/></svg></button>
     <button type="button" data-lang="it" lang="it" title="Italiano" aria-label="Italiano" aria-pressed="false"><svg viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#009246"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ce2b37"/></svg></button>
     <button type="button" data-lang="es" lang="es" title="Español" aria-label="Español" aria-pressed="false"><svg viewBox="0 0 1 4" preserveAspectRatio="none" aria-hidden="true"><rect width="1" height="4" fill="#aa151b"/><rect y="1" width="1" height="2" fill="#f1bf00"/></svg></button>
@@ -129,7 +130,6 @@
     <button type="button" data-lang="zh" lang="zh" title="中文" aria-label="中文" aria-pressed="false"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#ee1c25"/><g fill="#ffff00"><polygon points="5.00,2.00 5.67,4.07 7.85,4.07 6.09,5.35 6.76,7.43 5.00,6.15 3.24,7.43 3.91,5.35 2.15,4.07 4.33,4.07"/><polygon points="9.14,2.51 9.62,1.97 9.25,1.34 9.91,1.63 10.39,1.08 10.33,1.80 11.00,2.09 10.29,2.25 10.22,2.97 9.85,2.35"/><polygon points="11.01,4.14 11.66,3.82 11.56,3.10 12.07,3.62 12.72,3.30 12.38,3.95 12.88,4.47 12.17,4.34 11.83,4.99 11.73,4.27"/><polygon points="11.04,6.73 11.76,6.70 11.96,6.00 12.21,6.68 12.94,6.66 12.37,7.10 12.62,7.79 12.01,7.38 11.44,7.83 11.64,7.13"/><polygon points="9.22,8.38 9.90,8.63 10.35,8.06 10.32,8.79 11.00,9.05 10.30,9.24 10.26,9.96 9.87,9.36 9.16,9.55 9.62,8.98"/></g></svg></button>
     <button type="button" data-lang="ja" lang="ja" title="日本語" aria-label="日本語" aria-pressed="false"><svg viewBox="0 0 3 2" aria-hidden="true"><rect width="3" height="2" fill="#fff"/><circle cx="1.5" cy="1" r=".6" fill="#bc002d"/></svg></button>
     <button type="button" data-lang="hi" lang="hi" title="हिन्दी" aria-label="हिन्दी" aria-pressed="false"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#138808"/><rect width="30" height="13.34" fill="#fff"/><rect width="30" height="6.67" fill="#ff9933"/><circle cx="15" cy="10" r="2.6" fill="none" stroke="#000080" stroke-width=".9"/></svg></button>
-    <button type="button" data-lang="ar" lang="ar" title="العربية" aria-label="العربية" aria-pressed="false"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#000"/><rect width="30" height="13.34" fill="#fff"/><rect width="30" height="6.67" fill="#ce1126"/><ellipse cx="15" cy="10" rx="1.7" ry="2.5" fill="#c09300"/></svg></button>
   </div>
   <nav class="tabs">
     <a href="https://github.com/chorfiyoussef" target="_blank" rel="me noopener">GitHub</a>
@@ -137,7 +137,7 @@
     <a href="mailto:ychorfi@ethz.ch" data-i18n="mail-academic">Academic: ychorfi@ethz.ch</a>
     <a href="mailto:chorfiyouss@gmail.com" data-i18n="mail-other">Everything else: chorfiyouss@gmail.com</a>
   </nav>
-  <h1>Youssef Chorfi</h1>
+  <h1 data-i18n="name">Youssef Chorfi</h1>
 </header>
 
 <pre class="art" aria-hidden="true">
@@ -258,11 +258,12 @@
         'work-ta': 'De 2023 a 2024, fui <strong>assistente de ensino na ' + EPFL + '</strong>, onde orientei sessões de exercícios, ajudei estudantes com os trabalhos e corrigi avaliações em cinco unidades curriculares de informática e matemática, incluindo Software Construction, Álgebra Linear e Cálculo.'
       },
       zh: {
-        'title': 'Youssef Chorfi — 苏黎世联邦理工学院数据科学硕士',
+        'name': '优素福·肖尔菲',
+        'title': '优素福·肖尔菲 — 苏黎世联邦理工学院数据科学硕士',
         'mail-academic': '学术相关：ychorfi@ethz.ch',
         'mail-other': '其他事宜：chorfiyouss@gmail.com',
         'hello': '你好！',
-        'intro': '我是 Youssef，目前在 ' + ETH + '（苏黎世联邦理工学院）攻读数据科学硕士。',
+        'intro': '我是优素福，目前在 ' + ETH + '（苏黎世联邦理工学院）攻读数据科学硕士。',
         'agaria': '业余时间，我在开发 ' + AGARIA + '，一款自动化销售拓客与客户触达的工具。',
         'systems': '我喜欢做处在研究与实际产品交汇处的系统，尤其感兴趣的方向是<strong>分布式系统、智能体 AI 和应用型 AI 系统。</strong>',
         'bachelor': '我在 ' + EPFL + '（洛桑联邦理工学院）获得了计算机科学学士学位。',
@@ -272,11 +273,12 @@
         'work-ta': '2023 年至 2024 年，我在<strong> ' + EPFL + ' 担任助教</strong>，负责带习题课、辅导学生完成作业，并为五门计算机科学和数学课程批改作业，包括 Software Construction、线性代数和微积分。'
       },
       ja: {
-        'title': 'Youssef Chorfi — ETH Zürich データサイエンス修士',
+        'name': 'ユセフ・ショルフィ',
+        'title': 'ユセフ・ショルフィ — ETH Zürich データサイエンス修士',
         'mail-academic': '学術関係：ychorfi@ethz.ch',
         'mail-other': 'その他：chorfiyouss@gmail.com',
         'hello': 'こんにちは！',
-        'intro': ETH + '（チューリッヒ工科大学）でデータサイエンスを専攻している修士学生の Youssef です。',
+        'intro': ETH + '（チューリッヒ工科大学）でデータサイエンスを専攻している修士学生のユセフです。',
         'agaria': 'また、営業の見込み客開拓とアプローチを自動化するツール ' + AGARIA + ' を開発しています。',
         'systems': '研究と実際のプロダクトが交わる領域でシステムを作るのが好きです。特に<strong>分散システム、エージェント型 AI、応用 AI システム</strong>に関心があります。',
         'bachelor': '学部では ' + EPFL + '（スイス連邦工科大学ローザンヌ校）でコンピュータサイエンスを学びました。',
@@ -286,11 +288,12 @@
         'work-ta': '2023 年から 2024 年まで<strong> ' + EPFL + ' でティーチング・アシスタント</strong>を務め、演習セッションの進行や課題のサポートを行い、Software Construction、線形代数、解析学を含むコンピュータサイエンスと数学の 5 つの授業で採点を担当しました。'
       },
       hi: {
-        'title': 'Youssef Chorfi — ETH Zürich में डेटा साइंस मास्टर्स',
+        'name': 'यूसेफ़ शोरफ़ी',
+        'title': 'यूसेफ़ शोरफ़ी — ETH Zürich में डेटा साइंस मास्टर्स',
         'mail-academic': 'शैक्षणिक: ychorfi@ethz.ch',
         'mail-other': 'बाकी सब: chorfiyouss@gmail.com',
         'hello': 'नमस्ते!',
-        'intro': 'मैं Youssef हूँ और ' + ETH + ' में डेटा साइंस में मास्टर्स कर रहा हूँ।',
+        'intro': 'मैं यूसेफ़ हूँ और ' + ETH + ' में डेटा साइंस में मास्टर्स कर रहा हूँ।',
         'agaria': 'इसके साथ-साथ, मैं ' + AGARIA + ' बना रहा हूँ, एक टूल जो सेल्स प्रॉस्पेक्टिंग और आउटरीच को ऑटोमेट करता है।',
         'systems': 'मुझे रिसर्च और असली प्रोडक्ट्स के संगम पर सिस्टम्स बनाना पसंद है। मेरी ख़ास दिलचस्पी <strong>डिस्ट्रिब्यूटेड सिस्टम्स, एजेंटिक AI और एप्लाइड AI सिस्टम्स</strong> में है।',
         'bachelor': 'मैंने कंप्यूटर साइंस में बैचलर्स ' + EPFL + ' से किया है।',
@@ -300,7 +303,8 @@
         'work-ta': '2023 से 2024 तक, मैं <strong>' + EPFL + ' में टीचिंग असिस्टेंट</strong> था, जहाँ मैंने एक्सरसाइज़ सेशन्स लिए, छात्रों की असाइनमेंट्स में मदद की, और कंप्यूटर साइंस और गणित के पाँच कोर्सों में ग्रेडिंग की, जिनमें Software Construction, लीनियर अलजेब्रा और कैलकुलस शामिल हैं।'
       },
       ar: {
-        'title': 'Youssef Chorfi — ماجستير في علم البيانات في ETH Zürich',
+        'name': 'يوسف شرفي',
+        'title': 'يوسف شرفي — ماجستير في علم البيانات في ETH Zürich',
         'mail-academic': 'للشؤون الأكاديمية: ychorfi@ethz.ch',
         'mail-other': 'لكل ما عدا ذلك: chorfiyouss@gmail.com',
         'hello': 'مرحبًا!',
@@ -325,7 +329,7 @@
       document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
       for (var i = 0; i < els.length; i++) {
         var key = els[i].getAttribute('data-i18n');
-        if (dict[key] != null) els[i].innerHTML = dict[key];
+        els[i].innerHTML = dict[key] != null ? dict[key] : EN[key];
       }
       document.title = dict.title;
       for (var j = 0; j < btns.length; j++) btns[j].setAttribute('aria-pressed', btns[j].getAttribute('data-lang') === lang);

@@ -92,18 +92,21 @@
   .tabs a::before { content: "[ "; }
   .tabs a::after { content: " ]"; }
   .tabs a:hover { background: var(--fg); color: var(--bg); }
-  .lang { display: inline-flex; align-items: center; gap: .45rem; margin: 0 0 1rem -.2rem; padding: .15rem .2rem; border: 0; background: none; color: var(--link); cursor: pointer; font: .7em Menlo, Consolas, "Courier New", monospace; line-height: 1.4; }
-  .lang svg { display: block; width: 18px; height: 12px; box-shadow: 0 0 0 1px var(--fg); }
-  .lang::before { content: "["; }
-  .lang::after { content: "]"; }
-  .lang:hover, .lang:focus-visible { background: var(--fg); color: var(--bg); }
-  html[lang="fr"] .to-fr, html[lang="en"] .to-en { display: none; }
+  .langs { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .1rem; margin: 0 0 1rem -.2rem; font: .7em Menlo, Consolas, "Courier New", monospace; line-height: 1.4; }
+  .langs::before { content: "["; margin-right: .25rem; }
+  .langs::after { content: "]"; margin-left: .25rem; }
+  .langs button { padding: .25rem; border: 0; background: none; cursor: pointer; opacity: .45; }
+  .langs button:hover, .langs button:focus-visible, .langs button[aria-pressed="true"] { opacity: 1; }
+  .langs button[aria-pressed="true"] { background: var(--fg); cursor: default; }
+  .langs svg { display: block; width: 18px; height: 12px; box-shadow: 0 0 0 1px var(--fg); }
+  html[dir="rtl"] header, html[dir="rtl"] .art { direction: ltr; }
+  html[dir="rtl"] .tabs a { unicode-bidi: plaintext; }
   h2 { font-size: 1.3rem; font-weight: 700; margin: 3rem 0 .75rem; }
   p { margin: 1.25rem 0; }
   .art { float: right; margin: 0 0 1rem 2.5rem; color: var(--fg); font: 13px/15px Menlo, Consolas, "Courier New", monospace; }
   @media (min-width: 701px) {
     header { display: flex; flex-direction: column; }
-    .lang { align-self: flex-start; margin-bottom: .75rem; }
+    .langs { align-self: flex-start; margin-bottom: .75rem; }
   }
   @media (max-width: 700px) {
     .art { float: none; width: max-content; margin: 0 auto 1.5rem; }
@@ -116,12 +119,18 @@
 <main>
 
 <header>
-  <button class="lang" id="lang" type="button">
-    <svg class="to-fr" viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#0055a4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ef4135"/></svg>
-    <svg class="to-en" viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><clipPath id="uk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><path d="M0,0v30h60v-30z" fill="#00247d"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#uk)" stroke="#cf142b" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#cf142b" stroke-width="6"/></svg>
-    <span class="to-fr">Passer en français</span>
-    <span class="to-en">Switch to English</span>
-  </button>
+  <div class="langs" id="langs" role="group" aria-label="Language">
+    <button type="button" data-lang="en" lang="en" title="English" aria-label="English" aria-pressed="true"><svg viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><clipPath id="uk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><path d="M0,0v30h60v-30z" fill="#00247d"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#uk)" stroke="#cf142b" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#cf142b" stroke-width="6"/></svg></button>
+    <button type="button" data-lang="fr" lang="fr" title="Français" aria-label="Français" aria-pressed="false"><svg viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#0055a4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ef4135"/></svg></button>
+    <button type="button" data-lang="de" lang="de" title="Deutsch" aria-label="Deutsch" aria-pressed="false"><svg viewBox="0 0 1 3" preserveAspectRatio="none" aria-hidden="true"><rect width="1" height="1" fill="#000"/><rect y="1" width="1" height="1" fill="#dd0000"/><rect y="2" width="1" height="1" fill="#ffce00"/></svg></button>
+    <button type="button" data-lang="it" lang="it" title="Italiano" aria-label="Italiano" aria-pressed="false"><svg viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#009246"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ce2b37"/></svg></button>
+    <button type="button" data-lang="es" lang="es" title="Español" aria-label="Español" aria-pressed="false"><svg viewBox="0 0 1 4" preserveAspectRatio="none" aria-hidden="true"><rect width="1" height="4" fill="#aa151b"/><rect y="1" width="1" height="2" fill="#f1bf00"/></svg></button>
+    <button type="button" data-lang="pt" lang="pt" title="Português" aria-label="Português" aria-pressed="false"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="12" height="20" fill="#046a38"/><rect x="12" width="18" height="20" fill="#da291c"/><circle cx="12" cy="10" r="4.2" fill="#ffe000"/><rect x="10.3" y="7.6" width="3.4" height="4.6" rx="1.2" fill="#fff" stroke="#da291c" stroke-width=".9"/></svg></button>
+    <button type="button" data-lang="zh" lang="zh" title="中文" aria-label="中文" aria-pressed="false"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#ee1c25"/><g fill="#ffff00"><polygon points="5.00,2.00 5.67,4.07 7.85,4.07 6.09,5.35 6.76,7.43 5.00,6.15 3.24,7.43 3.91,5.35 2.15,4.07 4.33,4.07"/><polygon points="9.14,2.51 9.62,1.97 9.25,1.34 9.91,1.63 10.39,1.08 10.33,1.80 11.00,2.09 10.29,2.25 10.22,2.97 9.85,2.35"/><polygon points="11.01,4.14 11.66,3.82 11.56,3.10 12.07,3.62 12.72,3.30 12.38,3.95 12.88,4.47 12.17,4.34 11.83,4.99 11.73,4.27"/><polygon points="11.04,6.73 11.76,6.70 11.96,6.00 12.21,6.68 12.94,6.66 12.37,7.10 12.62,7.79 12.01,7.38 11.44,7.83 11.64,7.13"/><polygon points="9.22,8.38 9.90,8.63 10.35,8.06 10.32,8.79 11.00,9.05 10.30,9.24 10.26,9.96 9.87,9.36 9.16,9.55 9.62,8.98"/></g></svg></button>
+    <button type="button" data-lang="ja" lang="ja" title="日本語" aria-label="日本語" aria-pressed="false"><svg viewBox="0 0 3 2" aria-hidden="true"><rect width="3" height="2" fill="#fff"/><circle cx="1.5" cy="1" r=".6" fill="#bc002d"/></svg></button>
+    <button type="button" data-lang="hi" lang="hi" title="हिन्दी" aria-label="हिन्दी" aria-pressed="false"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#138808"/><rect width="30" height="13.34" fill="#fff"/><rect width="30" height="6.67" fill="#ff9933"/><circle cx="15" cy="10" r="2.6" fill="none" stroke="#000080" stroke-width=".9"/></svg></button>
+    <button type="button" data-lang="ar" lang="ar" title="العربية" aria-label="العربية" aria-pressed="false"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#000"/><rect width="30" height="13.34" fill="#fff"/><rect width="30" height="6.67" fill="#ce1126"/><ellipse cx="15" cy="10" rx="1.7" ry="2.5" fill="#c09300"/></svg></button>
+  </div>
   <nav class="tabs">
     <a href="https://github.com/chorfiyoussef" target="_blank" rel="me noopener">GitHub</a>
     <a href="Chorfi_Youssef_CV.pdf" download="Chorfi_Youssef_CV.pdf">CV</a>
@@ -173,39 +182,162 @@
 </main>
 <script>
   (function () {
-    var FR = {
-      'mail-academic': 'Académique : ychorfi@ethz.ch',
-      'mail-other': 'Le reste : chorfiyouss@gmail.com',
-      'hello': 'Salut !',
-      'intro': 'Je m’appelle Youssef, je suis étudiant en Master de Data Science à l’<a href="https://ethz.ch" target="_blank" rel="noopener">ETH Zürich</a>.',
-      'agaria': 'Parallèlement, je développe <a href="https://agaria.ai" target="_blank" rel="noopener">agaria.ai</a>, un outil qui automatise la prospection commerciale et la prise de contact.',
-      'systems': 'J’aime travailler sur des systèmes à l’intersection de la recherche et des produits concrets. Je m’intéresse particulièrement aux <strong>systèmes distribués, à l’IA agentique et aux systèmes d’IA appliqués.</strong>',
-      'bachelor': 'Je suis également diplômé d’un Bachelor en Informatique à l’<a href="https://www.epfl.ch" target="_blank" rel="noopener">EPFL</a>.',
-      'h-work': 'Expérience',
-      'work-nutrai': 'En 2025, j’ai fait un stage en tant que <strong>ML Engineer chez <a href="https://www.nutrai.ch" target="_blank" rel="noopener">NutrAI</a></strong>, où j’ai estimé la quantité d’un repas réellement consommée en comparant des photos prises avant et après le repas. J’ai également développé deux outils internes pour parcourir, filtrer et analyser le jeu de données d’images et lancer des expériences.',
-      'work-eec': 'De 2025 à 2026, j’ai été <strong>Event Lead à l’<a href="https://www.entrepreneur-club.org" target="_blank" rel="noopener">ETH Entrepreneur Club</a></strong>, où j’ai organisé deux événements étudiants de A à Z avec une petite équipe, en m’occupant notamment des sponsors, de la logistique et des opérations. Parmi eux, BOOST, une compétition de pitch pour startups en phase de démarrage avec un prix total de 40 000 CHF, et Startup Simulator, un événement d’une journée où des équipes passent par les différentes étapes de la création d’une entreprise.',
-      'work-ta': 'De 2023 à 2024, j’ai été <strong>assistant d’enseignement à l’<a href="https://www.epfl.ch" target="_blank" rel="noopener">EPFL</a></strong> pendant mes études, où j’ai animé des séances d’exercices, aidé les étudiants dans leurs devoirs et corrigé des copies pour cinq cours d’informatique et de mathématiques, dont Software Construction, Algèbre linéaire et Analyse.'
+    function a(href, text) { return '<a href="' + href + '" target="_blank" rel="noopener">' + text + '</a>'; }
+    var ETH = a('https://ethz.ch', 'ETH Zürich'), EPFL = a('https://www.epfl.ch', 'EPFL'),
+        AGARIA = a('https://agaria.ai', 'agaria.ai'), NUTRAI = a('https://www.nutrai.ch', 'NutrAI'),
+        EEC = a('https://www.entrepreneur-club.org', 'ETH Entrepreneur Club');
+    var I18N = {
+      fr: {
+        'title': 'Youssef Chorfi — Master en Data Science à l’ETH Zürich',
+        'mail-academic': 'Académique : ychorfi@ethz.ch',
+        'mail-other': 'Le reste : chorfiyouss@gmail.com',
+        'hello': 'Salut !',
+        'intro': 'Je m’appelle Youssef, je suis étudiant en Master de Data Science à l’' + ETH + '.',
+        'agaria': 'Parallèlement, je développe ' + AGARIA + ', un outil qui automatise la prospection commerciale et la prise de contact.',
+        'systems': 'J’aime travailler sur des systèmes à l’intersection de la recherche et des produits concrets. Je m’intéresse particulièrement aux <strong>systèmes distribués, à l’IA agentique et aux systèmes d’IA appliqués.</strong>',
+        'bachelor': 'Je suis également diplômé d’un Bachelor en Informatique à l’' + EPFL + '.',
+        'h-work': 'Expérience',
+        'work-nutrai': 'En 2025, j’ai fait un stage en tant que <strong>ML Engineer chez ' + NUTRAI + '</strong>, où j’ai estimé la quantité d’un repas réellement consommée en comparant des photos prises avant et après le repas. J’ai également développé deux outils internes pour parcourir, filtrer et analyser le jeu de données d’images et lancer des expériences.',
+        'work-eec': 'De 2025 à 2026, j’ai été <strong>Event Lead à l’' + EEC + '</strong>, où j’ai organisé deux événements étudiants de A à Z avec une petite équipe, en m’occupant notamment des sponsors, de la logistique et des opérations. Parmi eux, BOOST, une compétition de pitch pour startups en phase de démarrage avec un prix total de 40 000 CHF, et Startup Simulator, un événement d’une journée où des équipes passent par les différentes étapes de la création d’une entreprise.',
+        'work-ta': 'De 2023 à 2024, j’ai été <strong>assistant d’enseignement à l’' + EPFL + '</strong> pendant mes études, où j’ai animé des séances d’exercices, aidé les étudiants dans leurs devoirs et corrigé des copies pour cinq cours d’informatique et de mathématiques, dont Software Construction, Algèbre linéaire et Analyse.'
+      },
+      de: {
+        'title': 'Youssef Chorfi — Master in Data Science an der ETH Zürich',
+        'mail-academic': 'Akademisch: ychorfi@ethz.ch',
+        'mail-other': 'Alles andere: chorfiyouss@gmail.com',
+        'hello': 'Hallo!',
+        'intro': 'Ich bin Youssef, Masterstudent in Data Science an der ' + ETH + '.',
+        'agaria': 'Nebenbei baue ich ' + AGARIA + ', ein Tool, das Lead-Recherche und Kundenansprache im Vertrieb automatisiert.',
+        'systems': 'Ich arbeite gerne an Systemen an der Schnittstelle zwischen Forschung und echten Produkten. Besonders interessieren mich <strong>verteilte Systeme, agentische KI und angewandte KI-Systeme.</strong>',
+        'bachelor': 'Meinen Bachelor in Informatik habe ich an der ' + EPFL + ' gemacht.',
+        'h-work': 'Erfahrung',
+        'work-nutrai': '2025 war ich als <strong>ML Engineer bei ' + NUTRAI + '</strong> im Praktikum. Dort habe ich anhand von Fotos vor und nach dem Essen geschätzt, wie viel von einer Mahlzeit tatsächlich gegessen wurde. Zudem habe ich zwei interne Tools gebaut, um den Bilddatensatz zu durchsuchen, zu filtern und zu analysieren und Experimente durchzuführen.',
+        'work-eec': 'Von 2025 bis 2026 war ich <strong>Event Lead beim ' + EEC + '</strong>, wo ich mit einem kleinen Team zwei studentische Events von A bis Z organisiert habe, inklusive Sponsoren, Logistik und Betrieb. Dazu gehörten BOOST, ein Pitch-Wettbewerb für Startups in der Frühphase mit einem Preisgeld von insgesamt CHF 40’000, und Startup Simulator, ein eintägiger Event, bei dem Teams den Prozess einer Unternehmensgründung durchlaufen.',
+        'work-ta': 'Von 2023 bis 2024 war ich <strong>Hilfsassistent an der ' + EPFL + '</strong>, wo ich Übungsstunden geleitet, Studierende bei Aufgaben unterstützt und für fünf Kurse in Informatik und Mathematik korrigiert habe, darunter Software Construction, Lineare Algebra und Analysis.'
+      },
+      it: {
+        'title': 'Youssef Chorfi — Master in Data Science all’ETH Zürich',
+        'mail-academic': 'Accademico: ychorfi@ethz.ch',
+        'mail-other': 'Tutto il resto: chorfiyouss@gmail.com',
+        'hello': 'Ciao!',
+        'intro': 'Sono Youssef, studente di Master in Data Science all’' + ETH + '.',
+        'agaria': 'Nel frattempo sto sviluppando ' + AGARIA + ', uno strumento che automatizza la ricerca di nuovi clienti e il primo contatto commerciale.',
+        'systems': 'Mi piace lavorare su sistemi all’incrocio tra ricerca e prodotti reali. Mi interessano in particolare <strong>i sistemi distribuiti, l’IA agentica e i sistemi di IA applicata.</strong>',
+        'bachelor': 'Ho fatto il Bachelor in Informatica all’' + EPFL + '.',
+        'h-work': 'Esperienza',
+        'work-nutrai': 'Nel 2025 ho svolto uno stage come <strong>ML Engineer presso ' + NUTRAI + '</strong>, dove ho stimato quanto di un pasto venisse effettivamente mangiato confrontando foto scattate prima e dopo il pasto. Ho anche sviluppato due strumenti interni per esplorare, filtrare e analizzare il dataset di immagini e per lanciare esperimenti.',
+        'work-eec': 'Dal 2025 al 2026 sono stato <strong>Event Lead all’' + EEC + '</strong>, dove ho organizzato dall’inizio alla fine due eventi studenteschi con un piccolo team, occupandomi di sponsor, logistica e operazioni. Tra questi, BOOST, una competizione di pitch per startup in fase iniziale con un montepremi di 40’000 CHF, e Startup Simulator, un evento di un giorno in cui i team attraversano tutte le fasi della creazione di un’azienda.',
+        'work-ta': 'Dal 2023 al 2024 sono stato <strong>assistente alla didattica all’' + EPFL + '</strong>, dove ho tenuto sessioni di esercitazione, aiutato gli studenti con i compiti e corretto per cinque corsi di informatica e matematica, tra cui Software Construction, Algebra lineare e Analisi.'
+      },
+      es: {
+        'title': 'Youssef Chorfi — Máster en Data Science en la ETH Zürich',
+        'mail-academic': 'Académico: ychorfi@ethz.ch',
+        'mail-other': 'Todo lo demás: chorfiyouss@gmail.com',
+        'hello': '¡Hola!',
+        'intro': 'Soy Youssef, estudiante de Máster en Data Science en la ' + ETH + '.',
+        'agaria': 'En paralelo, estoy desarrollando ' + AGARIA + ', una herramienta que automatiza la prospección comercial y el contacto con clientes potenciales.',
+        'systems': 'Me gusta trabajar en sistemas en la intersección entre la investigación y los productos reales. Me interesan especialmente <strong>los sistemas distribuidos, la IA agéntica y los sistemas de IA aplicada.</strong>',
+        'bachelor': 'Estudié el Bachelor en Informática en la ' + EPFL + '.',
+        'h-work': 'Experiencia',
+        'work-nutrai': 'En 2025 hice unas prácticas como <strong>ML Engineer en ' + NUTRAI + '</strong>, donde estimé qué parte de una comida se había comido realmente comparando fotos tomadas antes y después de comer. También desarrollé dos herramientas internas para explorar, filtrar y analizar el conjunto de imágenes y lanzar experimentos.',
+        'work-eec': 'De 2025 a 2026 fui <strong>Event Lead en el ' + EEC + '</strong>, donde organicé de principio a fin dos eventos estudiantiles con un pequeño equipo, encargándome de patrocinadores, logística y operaciones. Entre ellos, BOOST, una competición de pitches para startups en fase inicial con una bolsa de premios de 40 000 CHF, y Startup Simulator, un evento de un día en el que los equipos recorren el proceso de crear una empresa.',
+        'work-ta': 'De 2023 a 2024 fui <strong>ayudante de docencia en la ' + EPFL + '</strong>, donde dirigí sesiones de ejercicios, ayudé a los estudiantes con sus tareas y corregí en cinco asignaturas de informática y matemáticas, entre ellas Software Construction, Álgebra lineal y Cálculo.'
+      },
+      pt: {
+        'title': 'Youssef Chorfi — Mestrado em Data Science na ETH Zürich',
+        'mail-academic': 'Académico: ychorfi@ethz.ch',
+        'mail-other': 'Tudo o resto: chorfiyouss@gmail.com',
+        'hello': 'Olá!',
+        'intro': 'Sou o Youssef, estudante de Mestrado em Data Science na ' + ETH + '.',
+        'agaria': 'Paralelamente, estou a desenvolver o ' + AGARIA + ', uma ferramenta que automatiza a prospeção comercial e o contacto com potenciais clientes.',
+        'systems': 'Gosto de trabalhar em sistemas na interseção entre a investigação e os produtos reais. Interesso-me particularmente por <strong>sistemas distribuídos, IA agêntica e sistemas de IA aplicada.</strong>',
+        'bachelor': 'Fiz o Bachelor em Informática na ' + EPFL + '.',
+        'h-work': 'Experiência',
+        'work-nutrai': 'Em 2025, fiz um estágio como <strong>ML Engineer na ' + NUTRAI + '</strong>, onde estimei que parte de uma refeição era efetivamente comida, comparando fotografias tiradas antes e depois de comer. Desenvolvi também duas ferramentas internas para explorar, filtrar e analisar o conjunto de imagens e lançar experiências.',
+        'work-eec': 'De 2025 a 2026, fui <strong>Event Lead no ' + EEC + '</strong>, onde organizei, do início ao fim, dois eventos estudantis com uma pequena equipa, tratando de patrocinadores, logística e operações. Entre eles, o BOOST, uma competição de pitch para startups em fase inicial com um prémio total de 40 000 CHF, e o Startup Simulator, um evento de um dia em que as equipas passam pelo processo de criar uma empresa.',
+        'work-ta': 'De 2023 a 2024, fui <strong>assistente de ensino na ' + EPFL + '</strong>, onde orientei sessões de exercícios, ajudei estudantes com os trabalhos e corrigi avaliações em cinco unidades curriculares de informática e matemática, incluindo Software Construction, Álgebra Linear e Cálculo.'
+      },
+      zh: {
+        'title': 'Youssef Chorfi — 苏黎世联邦理工学院数据科学硕士',
+        'mail-academic': '学术相关：ychorfi@ethz.ch',
+        'mail-other': '其他事宜：chorfiyouss@gmail.com',
+        'hello': '你好！',
+        'intro': '我是 Youssef，目前在 ' + ETH + '（苏黎世联邦理工学院）攻读数据科学硕士。',
+        'agaria': '业余时间，我在开发 ' + AGARIA + '，一款自动化销售拓客与客户触达的工具。',
+        'systems': '我喜欢做处在研究与实际产品交汇处的系统，尤其感兴趣的方向是<strong>分布式系统、智能体 AI 和应用型 AI 系统。</strong>',
+        'bachelor': '我在 ' + EPFL + '（洛桑联邦理工学院）获得了计算机科学学士学位。',
+        'h-work': '经历',
+        'work-nutrai': '2025 年，我在<strong> ' + NUTRAI + ' 担任 ML Engineer 实习生</strong>，通过比对餐前和餐后拍摄的照片，估算一个人实际吃掉了多少食物。我还开发了两个内部工具，用于浏览、筛选和分析图像数据集以及运行实验。',
+        'work-eec': '2025 年至 2026 年，我在<strong> ' + EEC + ' 担任 Event Lead</strong>，与一个小团队从头到尾组织了两场学生活动，负责赞助、后勤和运营。其中包括 BOOST——面向早期初创公司的路演比赛，奖金池总额 40,000 瑞士法郎；以及 Startup Simulator——为期一天的活动，参赛团队会完整体验创办一家公司的过程。',
+        'work-ta': '2023 年至 2024 年，我在<strong> ' + EPFL + ' 担任助教</strong>，负责带习题课、辅导学生完成作业，并为五门计算机科学和数学课程批改作业，包括 Software Construction、线性代数和微积分。'
+      },
+      ja: {
+        'title': 'Youssef Chorfi — ETH Zürich データサイエンス修士',
+        'mail-academic': '学術関係：ychorfi@ethz.ch',
+        'mail-other': 'その他：chorfiyouss@gmail.com',
+        'hello': 'こんにちは！',
+        'intro': ETH + '（チューリッヒ工科大学）でデータサイエンスを専攻している修士学生の Youssef です。',
+        'agaria': 'また、営業の見込み客開拓とアプローチを自動化するツール ' + AGARIA + ' を開発しています。',
+        'systems': '研究と実際のプロダクトが交わる領域でシステムを作るのが好きです。特に<strong>分散システム、エージェント型 AI、応用 AI システム</strong>に関心があります。',
+        'bachelor': '学部では ' + EPFL + '（スイス連邦工科大学ローザンヌ校）でコンピュータサイエンスを学びました。',
+        'h-work': '経歴',
+        'work-nutrai': '2025 年には<strong> ' + NUTRAI + ' で ML エンジニアとしてインターン</strong>をし、食事の前後に撮影した写真を照合して、実際にどれだけ食べたかを推定しました。また、画像データセットの閲覧・絞り込み・分析や実験の実行のための社内ツールを 2 つ開発しました。',
+        'work-eec': '2025 年から 2026 年まで<strong> ' + EEC + ' の Event Lead</strong> を務め、小さなチームで学生向けイベントを 2 つ企画から運営まで担当し、スポンサー対応、ロジスティクス、オペレーションを手がけました。その中には、賞金総額 40,000 スイスフランのアーリーステージ・スタートアップ向けピッチコンテスト BOOST や、チームが会社をつくるプロセスを 1 日で体験する Startup Simulator があります。',
+        'work-ta': '2023 年から 2024 年まで<strong> ' + EPFL + ' でティーチング・アシスタント</strong>を務め、演習セッションの進行や課題のサポートを行い、Software Construction、線形代数、解析学を含むコンピュータサイエンスと数学の 5 つの授業で採点を担当しました。'
+      },
+      hi: {
+        'title': 'Youssef Chorfi — ETH Zürich में डेटा साइंस मास्टर्स',
+        'mail-academic': 'शैक्षणिक: ychorfi@ethz.ch',
+        'mail-other': 'बाकी सब: chorfiyouss@gmail.com',
+        'hello': 'नमस्ते!',
+        'intro': 'मैं Youssef हूँ और ' + ETH + ' में डेटा साइंस में मास्टर्स कर रहा हूँ।',
+        'agaria': 'इसके साथ-साथ, मैं ' + AGARIA + ' बना रहा हूँ, एक टूल जो सेल्स प्रॉस्पेक्टिंग और आउटरीच को ऑटोमेट करता है।',
+        'systems': 'मुझे रिसर्च और असली प्रोडक्ट्स के संगम पर सिस्टम्स बनाना पसंद है। मेरी ख़ास दिलचस्पी <strong>डिस्ट्रिब्यूटेड सिस्टम्स, एजेंटिक AI और एप्लाइड AI सिस्टम्स</strong> में है।',
+        'bachelor': 'मैंने कंप्यूटर साइंस में बैचलर्स ' + EPFL + ' से किया है।',
+        'h-work': 'अनुभव',
+        'work-nutrai': '2025 में, मैंने <strong>' + NUTRAI + ' में ML इंजीनियर</strong> के रूप में इंटर्नशिप की, जहाँ मैंने खाने से पहले और बाद में ली गई तस्वीरों का मिलान करके यह अनुमान लगाया कि किसी ने असल में कितना खाना खाया। मैंने इमेज डेटासेट को ब्राउज़, फ़िल्टर और एनालाइज़ करने और एक्सपेरिमेंट्स चलाने के लिए दो इंटरनल टूल्स भी बनाए।',
+        'work-eec': '2025 से 2026 तक, मैं <strong>' + EEC + ' में Event Lead</strong> था, जहाँ मैंने एक छोटी टीम के साथ दो स्टूडेंट इवेंट्स शुरू से अंत तक ऑर्गनाइज़ किए और स्पॉन्सर्स, लॉजिस्टिक्स और ऑपरेशंस संभाले। इनमें BOOST, अर्ली-स्टेज स्टार्टअप्स के लिए CHF 40,000 के प्राइज़ पूल वाली पिचिंग प्रतियोगिता, और Startup Simulator, एक दिन का इवेंट जिसमें टीमें एक कंपनी बनाने की पूरी प्रक्रिया से गुज़रती हैं, शामिल थे।',
+        'work-ta': '2023 से 2024 तक, मैं <strong>' + EPFL + ' में टीचिंग असिस्टेंट</strong> था, जहाँ मैंने एक्सरसाइज़ सेशन्स लिए, छात्रों की असाइनमेंट्स में मदद की, और कंप्यूटर साइंस और गणित के पाँच कोर्सों में ग्रेडिंग की, जिनमें Software Construction, लीनियर अलजेब्रा और कैलकुलस शामिल हैं।'
+      },
+      ar: {
+        'title': 'Youssef Chorfi — ماجستير في علم البيانات في ETH Zürich',
+        'mail-academic': 'للشؤون الأكاديمية: ychorfi@ethz.ch',
+        'mail-other': 'لكل ما عدا ذلك: chorfiyouss@gmail.com',
+        'hello': 'مرحبًا!',
+        'intro': 'أنا يوسف، طالب ماجستير في علم البيانات في ' + ETH + '.',
+        'agaria': 'إلى جانب ذلك، أعمل على تطوير ' + AGARIA + '، وهي أداة تؤتمت البحث عن العملاء المحتملين والتواصل معهم في مجال المبيعات.',
+        'systems': 'أحب العمل على أنظمة تقع عند تقاطع البحث العلمي والمنتجات الفعلية، وأهتم بشكل خاص بـ<strong>الأنظمة الموزعة، والذكاء الاصطناعي الوكيلي، وأنظمة الذكاء الاصطناعي التطبيقية.</strong>',
+        'bachelor': 'حصلت على البكالوريوس في علوم الحاسوب من ' + EPFL + '.',
+        'h-work': 'الخبرات',
+        'work-nutrai': 'في عام 2025، تدرّبت بصفتي <strong>مهندس تعلّم آلي في ' + NUTRAI + '</strong>، حيث قدّرت كمية الطعام التي تناولها الشخص فعلًا من وجبته عبر مطابقة صور مُلتقطة قبل الأكل وبعده. كما طوّرت أداتين داخليتين لتصفّح مجموعة بيانات الصور وتصفيتها وتحليلها، ولإجراء التجارب.',
+        'work-eec': 'من 2025 إلى 2026، كنت <strong>مسؤول فعاليات (Event Lead) في ' + EEC + '</strong>، حيث نظّمت مع فريق صغير فعاليتين طلابيتين من البداية إلى النهاية، وتولّيت الرعاة والخدمات اللوجستية والعمليات. ومن بينهما BOOST، وهي مسابقة عروض للشركات الناشئة في مراحلها الأولى بمجموع جوائز قدره 40,000 فرنك سويسري، و Startup Simulator، وهي فعالية ليوم واحد تمرّ فيها الفرق بمراحل تأسيس شركة.',
+        'work-ta': 'من 2023 إلى 2024، كنت <strong>مساعد تدريس في ' + EPFL + '</strong>، حيث أدرت حصص التمارين، وساعدت الطلاب في واجباتهم، وصحّحت الأعمال في خمسة مقررات في علوم الحاسوب والرياضيات، منها Software Construction والجبر الخطي والتفاضل والتكامل.'
+      }
     };
-    var TITLE = { en: document.title, fr: 'Youssef Chorfi — Master en Data Science à l’ETH Zürich' };
-    var EN = {}, els = document.querySelectorAll('[data-i18n]'), btn = document.getElementById('lang');
+    var EN = { 'title': document.title }, els = document.querySelectorAll('[data-i18n]'),
+        bar = document.getElementById('langs'), btns = bar.querySelectorAll('button[data-lang]');
     for (var i = 0; i < els.length; i++) EN[els[i].getAttribute('data-i18n')] = els[i].innerHTML;
+    I18N.en = EN;
 
     function apply(lang) {
-      var dict = lang === 'fr' ? FR : EN;
+      var dict = I18N[lang];
       document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
       for (var i = 0; i < els.length; i++) {
         var key = els[i].getAttribute('data-i18n');
         if (dict[key] != null) els[i].innerHTML = dict[key];
       }
-      document.title = TITLE[lang];
+      document.title = dict.title;
+      for (var j = 0; j < btns.length; j++) btns[j].setAttribute('aria-pressed', btns[j].getAttribute('data-lang') === lang);
     }
 
-    var m = /[?&]lang=(fr|en)\b/.exec(location.search);
-    if (m && m[1] !== 'en') apply(m[1]);
+    var m = /[?&]lang=([a-z]{2})\b/.exec(location.search);
+    if (m && m[1] !== 'en' && I18N[m[1]]) apply(m[1]);
 
-    btn.addEventListener('click', function () {
-      var next = document.documentElement.lang === 'fr' ? 'en' : 'fr';
-      apply(next);
+    bar.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-lang]');
+      if (!b || b.getAttribute('data-lang') === document.documentElement.lang) return;
+      apply(b.getAttribute('data-lang'));
       if (window.scrambleHello) window.scrambleHello();
     });
   })();
